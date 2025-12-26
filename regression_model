@@ -1,0 +1,42 @@
+# ===============================
+# EXEMPLO REGRESSÃO E CLASSIFICAÇÃO
+# ===============================
+
+from sklearn.linear_model import LinearRegression, LogisticRegression
+
+# MODELO SUPERVISIONADO 
+# ===============================
+# 1. REGRESSÃO SIMPLES  (prevê número)    -> PERGUNTA: Qual a Nota provável se eu estudar 6 horas?
+# ===============================
+
+# Inserindo dados manualmente (X = entrada, y = saída)
+# Exemplo: horas de estudo → nota
+X_reg = [[1], [2], [3], [4], [5]]  # horas
+y_reg = [50, 60, 65, 70, 80]        # notas
+
+modelo_reg = LinearRegression()
+modelo_reg.fit(X_reg, y_reg)
+
+# Prever a nota para 6 horas de estudo
+pred_reg = modelo_reg.predict([[6]])
+
+print("\n=== REGRESSÃO ===")
+print(f"Entrada: 6 horas de estudo → Nota prevista: {pred_reg[0]:.2f}")
+
+# MODELO SUPERVISIONADO
+# ===============================
+# 2. REGRESSÃO LOGÍSTICA - CLASSIFICAÇÃO (prevê categoria)
+# ===============================
+
+# Exemplo: idade → se a pessoa compra (1) ou não compra (0)
+X_clf = [[18], [22], [35], [40], [50], [60]]    # idades
+y_clf = [0, 0, 1, 1, 1, 0]                      # labels (0/1)
+
+modelo_clf = LogisticRegression()
+modelo_clf.fit(X_clf, y_clf)
+
+# Prever se alguém de 30 anos compra (1) ou não (0)
+pred_clf = modelo_clf.predict([[30]])[0]
+
+print("\n=== CLASSIFICAÇÃO ===")
+print(f"Entrada: idade 30 → Classe prevista: {pred_clf} (1 = compra, 0 = não compra)")
